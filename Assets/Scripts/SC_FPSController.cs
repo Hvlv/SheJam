@@ -29,9 +29,31 @@ public class SC_FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+    //function for the puzzle
+    public void SetControlsEnabled(bool enabled)
+    {
+        canMove = enabled;
+
+        if (!enabled)
+        {
+            // stop immediate movement
+            moveDirection = Vector3.zero;
+            // unlock cursor so player can use UI
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            // re-lock cursor when resuming play
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
 
     void Update()
     {
+        if (!canMove) return; //for the puzzle input
+
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
