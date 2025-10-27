@@ -88,15 +88,12 @@
 //     }
 // }
 
-
-
-
 using UnityEngine;
 
 public class TagBasedInteractable : MonoBehaviour
 {
     [Header("UI Elements")]
-    public GameObject pressEUI; // رسالة "اضغط E"
+    public GameObject pressEUI;
 
     public string playerTag = "Player";
     private bool playerInside = false;
@@ -112,15 +109,12 @@ public class TagBasedInteractable : MonoBehaviour
     {
         if (playerInside)
         {
-            // لما يضغط اللاعب على E ولم يكن هناك واجهة مفتوحة
             if (Input.GetKeyDown(KeyCode.E) && !uiActive)
             {
-                // نحاول نجيب سكربت السؤال من نفس الكائن
                 QuestionManager questionManager = GetComponent<QuestionManager>();
 
                 if (questionManager != null)
                 {
-                    // نعرض السؤال ونعطل حركة اللاعب مؤقتًا
                     questionManager.ShowQuestion(playerController);
                     uiActive = true;
 
@@ -128,9 +122,16 @@ public class TagBasedInteractable : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("⚠️ لا يوجد QuestionManager مضاف على هذا الكائن!");
+                    Debug.LogWarning("⚠️ No QuestionManager attached to this object!");
                 }
             }
+        }
+
+        // إذا البانل مفتوح، خلي المؤشر ظاهر
+        if (uiActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -146,7 +147,7 @@ public class TagBasedInteractable : MonoBehaviour
                 if (playerController == null)
                     playerController = other.GetComponentInParent<SC_FPSController>();
                 if (playerController == null)
-                    playerController = FindObjectOfType<SC_FPSController>();
+                    playerController = FindFirstObjectByType<SC_FPSController>();
             }
 
             if (!uiActive && pressEUI)
@@ -162,6 +163,12 @@ public class TagBasedInteractable : MonoBehaviour
             uiActive = false;
 
             if (pressEUI) pressEUI.SetActive(false);
+
+            QuestionManager questionManager = GetComponent<QuestionManager>();
+            if (questionManager != null)
+            {
+                questionManager.ForceCloseQuestion();
+            }
         }
     }
 }

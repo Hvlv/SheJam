@@ -4225,8 +4225,8 @@ MonoBehaviour:
   - yes
   - no
   - maybe
-  correctAnswerIndex: 2
-  nextSceneName: SampleScene 1
+  correctAnswerIndex: 1
+  nextSceneName: SampleScene 2
   isLastLevel: 0
 --- !u!4 &1335356683 stripped
 Transform:
