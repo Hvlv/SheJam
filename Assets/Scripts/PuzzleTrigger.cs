@@ -4,7 +4,7 @@ using UnityEngine.UI;  // Needed for UI
 public class PuzzleTrigger : MonoBehaviour
 {
     public PuzzleManager puzzleManager;    // Reference to PuzzleManager
-    public Text interactText;              // UI Text: "Press E to play puzzle"
+    public GameObject interactText;              // UI Text: "Press E to play puzzle"
 
     private bool playerInside = false;
 

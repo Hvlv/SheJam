@@ -16,7 +16,7 @@ public class PuzzleManager : MonoBehaviour
 
     [Header("Puzzle Settings")]
     public int[] correctSequence;
-    [TextArea] public string hint = "Neon glows; the answer hides in light.";
+    [TextArea] public string hint = "Neon Glows; The Answer Hides In Light.";
 
     [Header("Audio")]
     public AudioClip buttonClickSound;
