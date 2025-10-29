@@ -114,16 +114,26 @@ public class SC_FPSController : MonoBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
+    [Header("Animation Settings")]
+    public Animator animator;
+
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
 
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool canLook = true;
+    
+    // Animation parameters
+    private bool isWalking = false;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        
+        // Get animator component if not assigned
+        if (animator == null)
+            animator = GetComponent<Animator>();
 
         // Lock cursor at start
         Cursor.lockState = CursorLockMode.Locked;
@@ -177,6 +187,9 @@ public class SC_FPSController : MonoBehaviour
                 moveDirection.y -= gravity * Time.deltaTime;
 
             characterController.Move(moveDirection * Time.deltaTime);
+            
+            // Update animation based on movement
+            UpdateAnimation();
         }
 
         // --- CAMERA ---
@@ -186,6 +199,21 @@ public class SC_FPSController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+    }
+    
+    private void UpdateAnimation()
+    {
+        if (animator == null) return;
+        
+        // Check if player is moving (horizontal movement)
+        bool isMoving = Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f || Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f;
+        
+        // Update walking state
+        if (isMoving != isWalking)
+        {
+            isWalking = isMoving;
+            animator.SetBool("Walk", isWalking);
         }
     }
 }
