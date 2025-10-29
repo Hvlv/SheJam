@@ -114,12 +114,17 @@ public class SC_FPSController : MonoBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
+    [Header("Respawn Settings")]
+    public float killYThreshold = -10f; // If player falls below this, respawn
+
     [Header("Animation Settings")]
     public Animator animator;
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
+    private Vector3 spawnPosition;
+    private Quaternion spawnRotation;
 
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool canLook = true;
@@ -134,6 +139,10 @@ public class SC_FPSController : MonoBehaviour
         // Get animator component if not assigned
         if (animator == null)
             animator = GetComponent<Animator>();
+
+        // Save initial spawn point
+        spawnPosition = transform.position;
+        spawnRotation = transform.rotation;
 
         // Lock cursor at start
         Cursor.lockState = CursorLockMode.Locked;
@@ -200,6 +209,12 @@ public class SC_FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+        // --- RESPAWN CHECK (fall below threshold) ---
+        if (transform.position.y < killYThreshold)
+        {
+            Respawn();
+        }
     }
     
     private void UpdateAnimation()
@@ -214,6 +229,30 @@ public class SC_FPSController : MonoBehaviour
         {
             isWalking = isMoving;
             animator.SetBool("Walk", isWalking);
+        }
+    }
+
+    // Respawn the player to the saved spawn point
+    public void Respawn()
+    {
+        if (characterController == null) return;
+        bool wasEnabled = characterController.enabled;
+        characterController.enabled = false;
+        moveDirection = Vector3.zero;
+        transform.position = spawnPosition;
+        transform.rotation = spawnRotation;
+        rotationX = 0f;
+        if (playerCamera != null)
+            playerCamera.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        characterController.enabled = wasEnabled;
+    }
+
+    // Called when CharacterController hits a collider (non-trigger)
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider != null && hit.collider.CompareTag("KillZone"))
+        {
+            Respawn();
         }
     }
 }

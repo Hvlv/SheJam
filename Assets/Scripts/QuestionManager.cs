@@ -139,6 +139,7 @@ public class QuestionManager : MonoBehaviour
     [Header("Level Info")]
     public string nextSceneName;
     public bool isLastLevel = false;
+	public string resultSceneName; // Scene to show win/lose outcome
 
     private SC_FPSController playerController;
 
@@ -179,7 +180,7 @@ public class QuestionManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    void OnAnswerSelected(int index)
+	void OnAnswerSelected(int index)
     {
         bool isCorrect = index == correctAnswerIndex;
         GameProgressTracker.SetAnswerResult(isCorrect);
@@ -187,16 +188,23 @@ public class QuestionManager : MonoBehaviour
         foreach (var btn in answerButtons)
             btn.interactable = false;
 
-        if (isLastLevel)
-        {
-            if (GameProgressTracker.AllAnswersCorrect())
-                questionText.text = "Well done! Get ready to reclaim the katana!";
-            else
-                questionText.text = "You made a mistake in one of the previous questions... You cannot reclaim the katana.";
-
-            GameProgressTracker.ResetProgress();
-            Invoke(nameof(CloseQuestion), 2f);
-        }
+		if (isLastLevel)
+		{
+			// Load result scene which will show win/lose object based on stored progress
+			if (!string.IsNullOrEmpty(resultSceneName))
+			{
+				SceneManager.LoadScene(resultSceneName);
+			}
+			else
+			{
+				// Fallback: keep previous inline messaging if no result scene is set
+				if (GameProgressTracker.AllAnswersCorrect())
+					questionText.text = "Well done! Get ready to reclaim the katana!";
+				else
+					questionText.text = "You made a mistake in one of the previous questions... You cannot reclaim the katana.";
+				Invoke(nameof(CloseQuestion), 2f);
+			}
+		}
         else
         {
             if (!string.IsNullOrEmpty(nextSceneName))

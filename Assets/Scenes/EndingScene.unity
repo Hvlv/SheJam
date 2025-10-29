@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &244433642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -677,7 +677,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 307669404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1553278187}
+        m_TargetAssemblyTypeName: ResultDisplay, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &307669404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,7 +1419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &622347342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1906,6 +1918,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426505828}
   m_CullTransparentMesh: 1
+--- !u!1 &1553278186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1553278188}
+  - component: {fileID: 1553278187}
+  m_Layer: 0
+  m_Name: winLose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1553278187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553278186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00706b4379b6784ea4f1346c2c49861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winFirst: {fileID: 2123896243}
+  winSecond: {fileID: 1699105699}
+  loseFirst: {fileID: 2142080833}
+  loseSecond: {fileID: 622347341}
+  finalsObject: {fileID: 244433641}
+  resetProgressOnShow: 1
+  mainMenuSceneName: MainMenu
+  postAdvanceSceneName: 
+  postAdvanceObject: {fileID: 244433641}
+--- !u!4 &1553278188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553278186}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.347598, y: -64.35422, z: 101.11924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1678366335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,7 +2052,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1678366338}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1553278187}
+        m_TargetAssemblyTypeName: ResultDisplay, Assembly-CSharp
+        m_MethodName: RestartToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1678366338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,7 +2221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1699105700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2542,7 +2619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2123896244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2593,7 +2670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2142080834
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2637,3 +2714,4 @@ SceneRoots:
   - {fileID: 1376010993}
   - {fileID: 430782589}
   - {fileID: 1685143949}
+  - {fileID: 1553278188}
