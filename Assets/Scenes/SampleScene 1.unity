@@ -9649,7 +9649,7 @@ MonoBehaviour:
   - {fileID: 1649391274}
   - {fileID: 40574112}
   correctSequence: 020000000000000001000000
-  hint: Neon Glows; The Answer Hides In Light
+  hint: I am the warmth that defies the cold, the fire that answers the blue
   buttonClickSound: {fileID: 8300000, guid: 0042bad7cb861c949a9ed7e1d1bc7588, type: 3}
   wrongSequenceSound: {fileID: 8300000, guid: cdb37f0f754b1ff4eac88e095145f7be, type: 3}
   correctSequenceSound: {fileID: 8300000, guid: beac31c47358dca44ad76ca557ee57b0, type: 3}

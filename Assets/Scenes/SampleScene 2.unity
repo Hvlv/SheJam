@@ -536,7 +536,7 @@ MonoBehaviour:
   - {fileID: 1712690529}
   - {fileID: 320061162}
   correctSequence: 010000000000000002000000
-  hint: Neon Glows; The Answer Hides In Light
+  hint: I walk with warriors, cloaked in respect and carved from integrity and glory
   buttonClickSound: {fileID: 8300000, guid: 4a4b75130810d6b42aee251be4ac8968, type: 3}
   wrongSequenceSound: {fileID: 8300000, guid: cdb37f0f754b1ff4eac88e095145f7be, type: 3}
   correctSequenceSound: {fileID: 8300000, guid: beac31c47358dca44ad76ca557ee57b0, type: 3}
