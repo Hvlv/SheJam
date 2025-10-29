@@ -127,7 +127,6 @@ public class TagBasedInteractable : MonoBehaviour
             }
         }
 
-        // إذا البانل مفتوح، خلي المؤشر ظاهر
         if (uiActive)
         {
             Cursor.lockState = CursorLockMode.None;
