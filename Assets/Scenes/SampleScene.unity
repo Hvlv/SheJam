@@ -8985,7 +8985,7 @@ MonoBehaviour:
   closeButton: {fileID: 721939838}
   playerController: {fileID: 196873317}
   audioSource: {fileID: 1391579730}
-  clickSound: {fileID: 8300000, guid: 75d2fb3cbe2246e4ba1fbfb0907b88e0, type: 3}
+  clickSound: {fileID: 8300000, guid: 4a4b75130810d6b42aee251be4ac8968, type: 3}
   solvedSound: {fileID: 8300000, guid: beac31c47358dca44ad76ca557ee57b0, type: 3}
 --- !u!114 &1391579732
 MonoBehaviour:
